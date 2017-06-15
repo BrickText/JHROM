@@ -1,6 +1,6 @@
 UPDATE_MOVIE = '''
     UPDATE MOVIE
-    SET column1=?, RATING=?
+    SET NAME=?, RATING=?
     WHERE MOVIE.ID=?;
 '''
 
