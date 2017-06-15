@@ -1,6 +1,8 @@
 from database.queries.insert_queries import INSERT_PROJECTION
+from database.queries.delete_queries import DELETE_PROJECTION
 from database.queries.update_queries import UPDATE_PROJECTION
-from database.queries.select_queries import SELECT_PROJECTION_ORDERED_BY_DATE
+from database.queries.select_queries import SELECT_PROJECTION_ORDERED_BY_DATE,\
+                                            SELECT_PROJECTION_BY_ID
 
 from settings.SharedVariables import SharedVariables
 from prettytable import PrettyTable
@@ -24,6 +26,26 @@ class Projection:
             # print(row[0], row[1], row[2], row[3], row[4])
             t.add_row([row[0], row[1], row[2], row[3], (100 - row[4])])
         return str(t)
+
+    @staticmethod
+    def show_projection(id):
+        try:
+            db_wrapper = SharedVariables.database
+            c = db_wrapper.get_cursor()
+            c.execute(SELECT_PROJECTION_BY_ID, [id, ])
+            db_wrapper.get_db().commit()
+        except Exception:
+            print("Database not initilized or connected")
+
+    @staticmethod
+    def delete_projection(id):
+        try:
+            db_wrapper = SharedVariables.database
+            c = db_wrapper.get_cursor()
+            c.execute(DELETE_PROJECTION, [id, ])
+            db_wrapper.get_db().commit()
+        except Exception:
+            print("Database not initilized or connected")
 
     @staticmethod
     def update_projection(id, movie_id, movie_type, date):
