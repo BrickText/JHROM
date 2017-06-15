@@ -1,4 +1,5 @@
 from database.queries.insert_queries import INSERT_MOVIE
+from database.queries.update_queries import UPDATE_MOVIE
 from database.queries.select_queries import SELECT_MOVIES_ORDERED_BY_RATING,\
                                             SELECT_PROJECTION_FOR_MOVIE
 
@@ -33,6 +34,16 @@ class Movies:
             print("Database not initilized or connected")
 
     @staticmethod
+    def update_movie(id, name, rating):
+        try:
+            db_wrapper = SharedVariables.database
+            c = db_wrapper.get_cursor()
+            c.execute(UPDATE_MOVIE, [name, rating, id, ])
+            db_wrapper.get_db().commit()
+        except Exception:
+            print("Database not initilized or connected")
+
+    @staticmethod
     def movie_projections(id):
         try:
             db_wrapper = SharedVariables.database
@@ -53,4 +64,5 @@ if __name__ == '__main__':
     SharedVariables.database = Database()
     Movies.add_movie("Baywatch", 10)
     print(Movies())
-    print(Movies.movie_projections(1))
+    Movies.update_movie(1, "Baywatch(1)", 8.7)
+    print(Movies())
