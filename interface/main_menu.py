@@ -1,15 +1,20 @@
 import sys
 
+
+from interface.Movie import Movies
+from interface.Projections import Projection
 import interface.interface as interface
+
+from database.connection.database_connection import Database
 from settings.SharedVariables import SharedVariables
 
 
 class MainMenu():
 
     def __init__(self):
+        SharedVariables.database = Database()
         self.users = None
-        self.movies = None
-        self.projection = None
+        self.movies = Movies()
         self.reservation = None
         self.is_logged = False
         self.current_user = None
@@ -37,14 +42,13 @@ class MainMenu():
                 interface.incorrect_option()
 
     def show_movies(self):
-        self.movies.show_movies()
+        print(self.movies)
 
     def show_movie_projection(self, command_split):
         if len(command_split) == 1:
-            self.projections.show_projections(int(command_split[0]))
+            print(Movies.movie_projections(int(command_split[0])))
         elif len(command_split) == 2:
-            self.projections.show_projections(int(command_split[0]),
-                                              command_split[1])
+            print(Projection(int(command_split[0]), command_split[1]))
 
     def check_taken_seats(self, projection):
         seats = SharedVariables.get_seats()
