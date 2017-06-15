@@ -7,6 +7,11 @@ JangoHomeMadeORM
   source JHROM/bin/activate
   pip install requirements.txt
   ```
+  ###### Before running:
+  ```bash
+  touch cinema.db
+  ```
+  
   ###### To run:
   ```bash
   ./__main__.py
