@@ -9,6 +9,8 @@ class Database:
     def __init__(self, database_name=DB_NAME):
         self.db_name = DB_NAME
         self.create_connection()
+        self.drop_tables()
+        self.create_tables()
 
     def create_connection(self):
         self.db = sqlite3.connect(self.db_name)
@@ -33,3 +35,7 @@ class Database:
 
     def get_db(self):
         return self.db
+
+
+if __name__ == '__main__':
+    d = Database()
