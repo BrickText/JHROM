@@ -3,6 +3,7 @@ import sys
 
 from interface.Movie import Movies
 from interface.Projections import Projection
+from interface.Users import Users
 import interface.interface as interface
 
 from database.connection.database_connection import Database
@@ -13,7 +14,7 @@ class MainMenu():
 
     def __init__(self):
         SharedVariables.database = Database()
-        self.users = None
+        self.users = Users()
         self.reservation = None
         self.is_logged = False
         self.current_user = None
