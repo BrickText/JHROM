@@ -150,7 +150,8 @@ class MainMenu():
         Movies().add_movie(movie[0], movie[1])
 
     def add_projection():
-        pass
+        projection = interface.add_projection()
+        Projection.add_projection(projection[0], projection[1], projection[2])
 
     def update_movie():
         pass

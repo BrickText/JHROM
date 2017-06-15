@@ -79,6 +79,13 @@ def add_movie():
     return (movie_name, movie_rating)
 
 
+def add_projection():
+    movie_id = int(input('Movie id: '))
+    movie_type = input('Movie type(2D, 3D): ')
+    projection_date = input('Projection date(%YYYY-%mm-%dd %hh:%mm:%ss): ')
+    return (movie_id, movie_type, projection_date)
+
+
 def wrong_user_or_pass():
     print('Your username or password is incorrect')
 
