@@ -28,14 +28,20 @@ class Projection:
         return str(t)
 
     @staticmethod
-    def show_projection(id):
+    def get_movie(id):
         try:
             db_wrapper = SharedVariables.database
             c = db_wrapper.get_cursor()
-            c.execute(SELECT_PROJECTION_BY_ID, [id, ])
+            data = c.execute(SELECT_PROJECTION_BY_ID, [id, ])
             db_wrapper.get_db().commit()
         except Exception:
             print("Database not initilized or connected")
+
+        t = PrettyTable(['Projection ID', 'Movie ID',
+                        'Movie Type', 'Date Time'])
+        for row in data:
+            t.add_row([row[0], row[1], row[2], row[3]])
+        return str(t)
 
     @staticmethod
     def delete_projection(id):
