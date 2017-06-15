@@ -12,7 +12,8 @@ class Users:
             print("Databse connection problem")
 
     def is_user(self, user_and_pass):
-        result = self.c.execute(IS_USER_IN_USERS, user_and_pass)
+        result = self.c.execute(IS_USER_IN_USERS,
+                                (user_and_pass[0], user_and_pass[1]))
         first = result.fetchone()
         if first is not None:
             return first
@@ -28,6 +29,6 @@ class Users:
             return False
 
     def registration(self, user_and_pass):
-        self.c.execute(INSERT_USER, user_and_pass)
+        self.c.execute(INSERT_USER, (user_and_pass[0], user_and_pass[1]))
         self.SharedVariables.database.db.commit()
         return self.is_user(user_and_pass)
