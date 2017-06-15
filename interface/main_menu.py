@@ -37,32 +37,32 @@ class MainMenu():
                 self.add_projection()
             elif command.find('update movie') >= 0:
                 if len(command.split()) == 3:
-                    self.update_movie(command.split()[-1:])
+                    self.update_movie(int(command.split()[-1:][0]))
                 else:
                     interface.incorrect_option()
             elif command.find('update projection') >= 0:
                 if len(command.split()) == 3:
-                    self.update_projection(command.split()[-1:])
+                    self.update_projection(int(command.split()[-1:][0]))
                 else:
                     interface.incorrect_option()
             elif command.find('update reservation') >= 0:
                 if len(command.split()) == 3:
-                    self.update_reservation(command.split()[-1:])
+                    self.update_reservation(int(command.split()[-1:][0]))
                 else:
                     interface.incorrect_option()
             elif command.find('delete movie') >= 0:
                 if len(command.split()) == 3:
-                    self.delete_movie(command.split()[-1:])
+                    self.delete_movie(int(command.split()[-1:][0]))
                 else:
                     interface.incorrect_option()
             elif command.find('delete projection') >= 0:
                 if len(command.split()) == 3:
-                    self.delete_projection(command.split()[-1:])
+                    self.delete_projection(int(command.split()[-1:][0]))
                 else:
                     interface.incorrect_option()
             elif command.find('delete reservation') >= 0:
                 if len(command.split()) == 3:
-                    self.delete_reservation(command.split()[-1:])
+                    self.delete_reservation(int(command.split()[-1:][0]))
                 else:
                     interface.incorrect_option()
             elif command == 'reset database':
@@ -179,7 +179,7 @@ class MainMenu():
         projection = interface.update_projection(Projection.
                                                  get_projection(projection_id))
         Projection.update_projection(projection_id, projection[0],
-                                     projection[1], projection[2])
+                                        projection[1], projection[2])
 
     def delete_movie(self, movie_id):
         Movies.delete_movie(movie_id)
