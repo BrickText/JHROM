@@ -29,6 +29,6 @@ class Users:
             return False
 
     def registration(self, user_and_pass):
-        self.c.execute(INSERT_USER, (user_and_pass[0], user_and_pass[1]))
+        self.c.execute(INSERT_USER, [user_and_pass[0], user_and_pass[1], ])
         self.SharedVariables.database.db.commit()
         return self.is_user(user_and_pass)
