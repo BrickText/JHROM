@@ -6,10 +6,10 @@ class SharedVariables:
                       'Available Spots']
 
     options = ['show movies', 'show movie projection <movieid> '
-               '[<projection date>]', 'make reservation', 'reset database',
-               'add movie', 'add projection', 'update movie',
-               'update projection', 'update reservation', 'delete movie',
-               'delete projection', 'update reservation', 'help', 'exit']
+               '[<projection date>]', 'make reservation', 'add movie',
+               'add projection', 'update movie', 'update projection',
+               'delete movie', 'delete projection', 'update reservation',
+               'reset database' 'help', 'exit']
 
     available_seat = '.'
     taken_seat = 'x'
