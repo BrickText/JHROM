@@ -9,6 +9,8 @@ class Database:
     def __init__(self, database_name=DB_NAME):
         self.db_name = DB_NAME
         self.create_connection()
+
+    def reset_database(self):
         self.drop_tables()
         self.create_tables()
 
