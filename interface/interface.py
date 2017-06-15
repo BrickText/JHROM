@@ -98,6 +98,10 @@ def update_projection(projection):
     return add_projection()
 
 
+def success_delete():
+    print("Succes deleting object")
+
+
 def wrong_user_or_pass():
     print('Your username or password is incorrect')
 

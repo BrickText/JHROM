@@ -40,19 +40,31 @@ class MainMenu():
                     self.update_movie(command.split()[-1:])
                 else:
                     interface.incorrect_option()
-            elif command == 'update projection':
+            elif command.find('update projection') >= 0:
                 if len(command.split()) == 3:
                     self.update_projection(command.split()[-1:])
                 else:
                     interface.incorrect_option()
-            elif command == 'update reservation':
-                self.update_reservation()
-            elif command == 'delete movie':
-                self.delete_movie()
-            elif command == 'delete projection':
-                self.delete_projection()
-            elif command == 'delete reservation':
-                self.delete_reservation()
+            elif command.find('update reservation') >= 0:
+                if len(command.split()) == 3:
+                    self.update_reservation(command.split()[-1:])
+                else:
+                    interface.incorrect_option()
+            elif command.find('delete movie') >= 0:
+                if len(command.split()) == 3:
+                    self.delete_movie(command.split()[-1:])
+                else:
+                    interface.incorrect_option()
+            elif command.find('delete projection') >= 0:
+                if len(command.split()) == 3:
+                    self.delete_projection(command.split()[-1:])
+                else:
+                    interface.incorrect_option()
+            elif command.find('delete reservation') >= 0:
+                if len(command.split()) == 3:
+                    self.delete_reservation(command.split()[-1:])
+                else:
+                    interface.incorrect_option()
             elif command == 'reset database':
                 SharedVariables.database.reset_database()
             elif command == 'help':
@@ -169,14 +181,12 @@ class MainMenu():
         Projection().update_projection(projection_id, projection[0],
                                        projection[1], projection[2])
 
-    def update_reservation():
-        pass
+    def delete_movie(movie_id):
+        Movies().delete_movie(movie_id)
+        interface.success_delete()
 
-    def delete_movie():
-        pass
+    def delete_projection(projection_id):
+        Projection().delete_projection(projection_id)
 
-    def delete_projection():
-        pass
-
-    def delete_reservation():
-        pass
+    def delete_reservation(reservation_id):
+        Reservstion().delete_reservation(reservation_id)
