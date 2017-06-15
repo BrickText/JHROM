@@ -1,4 +1,5 @@
 from database.queries.insert_queries import INSERT_PROJECTION
+from database.queries.update_queries import UPDATE_PROJECTION
 from database.queries.select_queries import SELECT_PROJECTION_ORDERED_BY_DATE
 
 from settings.SharedVariables import SharedVariables
@@ -25,6 +26,16 @@ class Projection:
         return str(t)
 
     @staticmethod
+    def update_projection(id, movie_id, movie_type, date):
+        try:
+            db_wrapper = SharedVariables.database
+            c = db_wrapper.get_cursor()
+            c.execute(UPDATE_PROJECTION, [movie_id, movie_type, date, id, ])
+            db_wrapper.get_db().commit()
+        except Exception:
+            print("Database not initilized or connected")
+
+    @staticmethod
     def add_projection(movie_id, movie_type, date):
         try:
             db_wrapper = SharedVariables.database
@@ -39,4 +50,6 @@ if __name__ == '__main__':
     from database.connection.database_connection import Database
     SharedVariables.database = Database()
     Projection.add_projection(1, "2D", "2018-08-11 11:11:11")
+    print(Projection(1, "2018-08-11"))
+    Projection.update_projection(1, 1, "3D", "2018-08-11 11:11:11")
     print(Projection(1, "2018-08-11"))
