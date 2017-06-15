@@ -4,7 +4,7 @@ from getpass import getpass
 import hashlib
 
 from settings.SharedVariables import SharedVariables
-from settings.validators import validators
+from settings.validators import validate_password
 
 
 def input_command():
@@ -64,7 +64,7 @@ def registration():
         if getpass('Try again: ') != password:
             print('Two passwords doesn\'t match')
             return 0
-    if validators.validate_password(password):
+    if validate_password(password):
         hash_pass = hashlib.sha512(password.encode()).hexdigest()
         return (username, hash_pass)
     else:
