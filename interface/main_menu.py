@@ -7,10 +7,10 @@ from settings.SharedVariables import SharedVariables
 class MainMenu():
 
     def __init__(self):
-        self.users
-        self.movies
-        self.projection
-        self.reservation
+        self.users = None
+        self.movies = None
+        self.projection = None
+        self.reservation = None
         self.is_logged = False
         self.current_user = None
         self.loop()
