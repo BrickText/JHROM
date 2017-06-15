@@ -21,7 +21,7 @@ class Users:
             return None
 
     def is_username(self, username):
-        result = self.c.execute(IS_USER_IN_USERS, (username, '%%'))
+        result = self.c.execute(IS_USER_IN_USERS, [username, '%%', ])
         first = result.fetchone()
         if first is not None:
             return True
