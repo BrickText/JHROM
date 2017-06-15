@@ -14,7 +14,6 @@ class MainMenu():
     def __init__(self):
         SharedVariables.database = Database()
         self.users = None
-        self.movies = Movies()
         self.reservation = None
         self.is_logged = False
         self.current_user = None
@@ -33,8 +32,8 @@ class MainMenu():
             elif command == 'make reservation':
                 self.make_reservation()
             elif command == 'reset database':
-                pass
-            elif command == 'help':
+                SharedVariables.database.reset_database()
+            elif command == 'help': 
                 interface.help()
             elif command == 'exit':
                 sys.exit()
@@ -42,7 +41,7 @@ class MainMenu():
                 interface.incorrect_option()
 
     def show_movies(self):
-        print(self.movies)
+        print(Movies())
 
     def show_movie_projection(self, command_split):
         if len(command_split) == 1:
