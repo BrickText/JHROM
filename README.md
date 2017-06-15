@@ -12,6 +12,6 @@ JangoHomeMadeORM
   ./__main__.py
   ```
 # Purpose of application
-<TODO>
+#TODO
 # For help in application
 help
