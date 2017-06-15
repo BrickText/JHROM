@@ -1,6 +1,6 @@
 import sys
 
-import interface.interface
+import interface.interface as interface
 from settings.SharedVariables import SharedVariables
 
 
