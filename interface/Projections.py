@@ -6,8 +6,8 @@ class Projection():
     def __init__(self, movie_id, projection_date):
         pass
 
-    @classmethod
-    def add_projection(cls, movie_id, movie_type, date):
+    @staticmethod
+    def add_projection(movie_id, movie_type, date):
         try:
             db_wrapper = SharedVariables.database
             c = db_wrapper.get_cursor()
