@@ -1,7 +1,7 @@
 # JHROM
 JangoHomeMadeORM
 # Setup
-##To run:
+## To run:
 ```bash
 virtualenv -p python3 JHROM
 source JHROM/bin/activate
