@@ -171,7 +171,7 @@ class MainMenu():
         projection = interface.add_projection()
         Projection.add_projection(projection[0], projection[1], projection[2])
 
-    def update_movie(movie_id):
+    def update_movie(self, movie_id):
         movie = interface.update_movie(Movies().get_movie(movie_id))
         Movies().update_movie(movie_id, movie[0], movie[1])
 
