@@ -31,9 +31,25 @@ class MainMenu():
                     self.show_movie_projection(command.split()[-2:])
             elif command == 'make reservation':
                 self.make_reservation()
+            elif command == 'add movie':
+                self.add_movie()
+            elif command == 'add projection':
+                self.add_projection()
+            elif command == 'update movie':
+                self.update_movie()
+            elif command == 'update projection':
+                self.update_projection()
+            elif command == 'update reservation':
+                self.update_reservation()
+            elif command == 'delete movie':
+                self.delete_movie()
+            elif command == 'delete projection':
+                self.delete_projection()
+            elif command == 'delete reservation':
+                self.delete_reservation()
             elif command == 'reset database':
                 SharedVariables.database.reset_database()
-            elif command == 'help': 
+            elif command == 'help':
                 interface.help()
             elif command == 'exit':
                 sys.exit()
@@ -128,3 +144,29 @@ class MainMenu():
                 interface.username_not_free()
         else:
             interface.username_not_free()
+
+    def add_movie():
+        movie = interface.add_movie()
+        Movies().add_movie(movie[0], movie[1])
+
+    def add_projection():
+        projection = interface.add_projection()
+        Projection.add_projection(projection[0], projection[1], projection[2])
+
+    def update_movie():
+        pass
+
+    def update_projection():
+        pass
+
+    def update_reservation():
+        pass
+
+    def delete_movie():
+        pass
+
+    def delete_projection():
+        pass
+
+    def delete_reservation():
+        pass
