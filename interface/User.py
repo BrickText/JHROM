@@ -13,7 +13,7 @@ class Users:
 
     def is_user(self, user_and_pass):
         result = self.c.execute(IS_USER_IN_USERS,
-                                (user_and_pass[0], user_and_pass[1]))
+                                [user_and_pass[0], user_and_pass[1], ])
         first = result.fetchone()
         if first is not None:
             return first
