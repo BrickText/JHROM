@@ -73,9 +73,7 @@ class MainMenu():
                 temp += 1
 
     def make_reservation(self):
-        if self.is_logged:
-            self.log()
-        else:
+        if not self.is_logged:
             self.login_and_registration()
 
         interface.print_name(self.current_user)
@@ -99,3 +97,31 @@ class MainMenu():
 
     def make_reservation_values(self, user_id, projection_id, seats):
         return [(user_id, projection_id, seat[0], seat[1]) for seat in seats]
+
+    def login_and_registration(self):
+        option = interface.registration_or_login()
+        if option == 'y':
+            self.login()
+        elif option == 'n':
+            self.register()
+        else:
+            interface.incorrect_option()
+
+    def login(self):
+        self.current_user = self.users.is_user(interface.login())
+        if self.current_user:
+            self.is_logged = True
+        else:
+            interface.wrong_user_or_pass()
+            sys.exit()
+
+    def register(self):
+        registration_data = interface.registration()
+        if registration_data:
+            if not self.users.is_username(registration_data[0]):
+                self.current_user = self.users.registration(registration_data)
+                self.is_logged = True
+            else:
+                interface.username_not_free()
+        else:
+            interface.username_not_free()
