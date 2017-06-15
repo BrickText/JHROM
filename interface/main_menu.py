@@ -165,28 +165,28 @@ class MainMenu():
 
     def add_movie(self):
         movie = interface.add_movie()
-        Movies().add_movie(movie[0], movie[1])
+        Movies.add_movie(movie[0], movie[1])
 
     def add_projection(self):
         projection = interface.add_projection()
         Projection.add_projection(projection[0], projection[1], projection[2])
 
     def update_movie(self, movie_id):
-        movie = interface.update_movie(Movies().get_movie(movie_id))
-        Movies().update_movie(movie_id, movie[0], movie[1])
+        movie = interface.update_movie(Movies.get_movie(movie_id))
+        Movies.update_movie(movie_id, movie[0], movie[1])
 
     def update_projection(self, projection_id):
-        projection = interface.update_projection(Projection().
+        projection = interface.update_projection(Projection.
                                                  get_projection(projection_id))
-        Projection().update_projection(projection_id, projection[0],
-                                       projection[1], projection[2])
+        Projection.update_projection(projection_id, projection[0],
+                                     projection[1], projection[2])
 
     def delete_movie(self, movie_id):
-        Movies().delete_movie(movie_id)
+        Movies.delete_movie(movie_id)
         interface.success_delete()
 
     def delete_projection(self, projection_id):
-        Projection().delete_projection(projection_id)
+        Projection.delete_projection(projection_id)
 
     def delete_reservation(self, reservation_id):
-        Reservstion().delete_reservation(reservation_id)
+        Reservstion.delete_reservation(reservation_id)
