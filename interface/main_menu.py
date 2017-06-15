@@ -3,7 +3,7 @@ import sys
 
 from interface.Movie import Movies
 from interface.Projections import Projection
-from interface.Users import Users
+from interface.User import Users
 import interface.interface as interface
 
 from database.connection.database_connection import Database
