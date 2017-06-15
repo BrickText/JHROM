@@ -28,7 +28,7 @@ class Projection:
         return str(t)
 
     @staticmethod
-    def get_movie(id):
+    def get_projection(id):
         try:
             db_wrapper = SharedVariables.database
             c = db_wrapper.get_cursor()
