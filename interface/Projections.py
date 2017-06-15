@@ -6,6 +6,9 @@ class Projection():
     def __init__(self, movie_id, projection_date):
         pass
 
+    def __str__(self):
+        pass
+
     @staticmethod
     def add_projection(movie_id, movie_type, date):
         try:
