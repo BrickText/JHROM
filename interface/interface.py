@@ -86,6 +86,22 @@ def add_projection():
     return (movie_id, movie_type, projection_date)
 
 
+def update_movie(movie):
+    print("Movie to update")
+    print(movie)
+    return add_movie()
+
+
+def update_projection(projection):
+    print("Projection to update")
+    print(projection)
+    return add_projection()
+
+
+def success_delete():
+    print("Succes deleting object")
+
+
 def wrong_user_or_pass():
     print('Your username or password is incorrect')
 
@@ -105,3 +121,7 @@ def taken_seat():
 def help():
     for el in SharedVariables.options:
         print(el)
+
+
+def incorrect_option():
+    print('Incorrect option!')
