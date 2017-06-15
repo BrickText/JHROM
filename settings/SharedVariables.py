@@ -2,8 +2,8 @@ class SharedVariables:
     database = None
 
     movie_col = ['Id', 'Name', 'Rating']
-    projection_col = ['Id', 'Movie_ID', 'Type', 'Projections Date',
-                      'Projections Time', 'Available Spots']
+    projection_col = ['Id', 'Movie_ID', 'Type', 'Projections Date Time',
+                      'Available Spots']
 
     options = ['show movies', 'show movie projection <movieid> '
                '[<projection date>]', 'make reservation', 'help', 'exit']
@@ -13,6 +13,8 @@ class SharedVariables:
 
     number_of_rows = 10
     number_of_cols = 10
+
+    end_of_day = "23:59:59"
 
     @classmethod
     def get_seats():

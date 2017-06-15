@@ -1,15 +1,25 @@
 from database.queries.insert_queries import INSERT_MOVIE
+from database.queries.select_queries import SELECT_MOVIES_ORDERED_BY_RATING
+
 from settings.SharedVariables import SharedVariables
+from prettytable import PrettyTable
 
 
-class Movies():
+class Movies:
 
     def __init__(self):
-        # SELCT ALL MOVIES
-        pass
+        try:
+            db_wrapper = SharedVariables.database
+            c = db_wrapper.get_cursor()
+            self.data = c.execute(SELECT_MOVIES_ORDERED_BY_RATING)
+        except Exception:
+            print("Database not initilized or connected")
 
     def __str__(self):
-        return "Movies"
+        t = PrettyTable(SharedVariables.movie_col)
+        for row in self.data:
+            t.add_row([row[0], row[1], row[2]])
+        return str(t)
 
     @staticmethod
     def add_movie(name, rating):
@@ -19,10 +29,11 @@ class Movies():
             c.execute(INSERT_MOVIE, [name, rating, ])
             db_wrapper.get_db().commit()
         except Exception:
-            print("Database not initialized")
+            print("Database not initilized or connected")
 
 
 if __name__ == '__main__':
     from database.connection.database_connection import Database
     SharedVariables.database = Database()
     Movies.add_movie("Baywatch", 10)
+    print(Movies())
