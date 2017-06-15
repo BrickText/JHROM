@@ -11,5 +11,7 @@ JangoHomeMadeORM
   ```bash
   ./__main__.py
   ```
+# Purpose of application
+
 # For help in application
 help
