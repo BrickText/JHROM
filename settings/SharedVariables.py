@@ -1,0 +1,2 @@
+class SharedVariables:
+    database = None

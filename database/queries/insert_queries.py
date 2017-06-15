@@ -5,7 +5,7 @@ INSERT_MOVIE = '''
 
 INSERT_PROJECTION = '''
     INSERT INTO PROJECTION (MOVIE_ID, TYPE, DATE)
-    VALUES (?, ?, ?, ?);
+    VALUES (?, ?, ?);
 '''
 
 INSERT_RESERVATION = '''
