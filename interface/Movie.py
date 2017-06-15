@@ -28,15 +28,17 @@ class Movies:
     @staticmethod
     def get_movie(id):
         try:
+            print(id, type(id))
             db_wrapper = SharedVariables.database
             c = db_wrapper.get_cursor()
             data = c.execute(SELECT_MOVIE_BY_ID, [id, ])
-            t = PrettyTable(SharedVariables.movie_col)
-            for row in data:
-                t.add_row([row[0], row[1], row[2]])
-            return str(t)
         except Exception:
             print("Database not initilized or connected")
+
+        t = PrettyTable(SharedVariables.movie_col)
+        for row in data:
+            t.add_row([row[0], row[1], row[2]])
+        return str(t)
 
     @staticmethod
     def add_movie(name, rating):
