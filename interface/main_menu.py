@@ -180,7 +180,7 @@ class MainMenu():
         projection = interface.update_projection(Projection.
                                                  get_projection(projection_id))
         Projection.update_projection(projection_id, projection[0],
-                                        projection[1], projection[2])
+                                     projection[1], projection[2])
 
     def delete_movie(self, movie_id):
         Movies.delete_movie(movie_id)
@@ -188,6 +188,7 @@ class MainMenu():
 
     def delete_projection(self, projection_id):
         Projection.delete_projection(projection_id)
+        interface.success_delete()
 
     def delete_reservation(self, reservation_id):
         Reservstion.delete_reservation(reservation_id)
