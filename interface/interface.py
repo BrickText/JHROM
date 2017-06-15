@@ -1,6 +1,8 @@
 from ast import literal_eval
 import numpy
 
+from settings.SharedVariables import SharedVariables
+
 
 def input_command():
     return input('> ')

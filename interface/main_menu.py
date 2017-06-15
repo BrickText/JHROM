@@ -1,6 +1,7 @@
 import sys
 
 import interface
+from settings.SharedVariables import SharedVariables
 
 
 class MainMenu():
@@ -46,11 +47,11 @@ class MainMenu():
                                               command_split[1])
 
     def check_taken_seats(self, projection):
-        seats = settings.get_seats()
+        seats = SharedVariables.get_seats()
         taken_seats = []
         reversed_seats = self.reservations.get_taken_seats(projection)
         for row in reversed_seats:
-            seats[row[0] - 1][row[1] - 1] = settings.taken_seat
+            seats[row[0] - 1][row[1] - 1] = SharedVariables.taken_seat
             taken_seats.append((row[0], row[1]))
         return (seats, taken_seats)
 
@@ -59,8 +60,8 @@ class MainMenu():
         seats = []
         while True:
             temp_seats = interface.choose_seat(temp)
-            if temp_seats[0] > settings.number_of_rows or\
-               temp_seats[1] > settings.number_of_cols:
+            if temp_seats[0] > SharedVariables.number_of_rows or\
+               temp_seats[1] > SharedVariables.number_of_cols:
                 interface.out_of_range()
             elif temp_seats in taken_seats or temp_seats in seats:
                 interface.taken_seat()
