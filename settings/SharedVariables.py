@@ -19,7 +19,7 @@ class SharedVariables:
 
     end_of_day = "23:59:59"
 
-    @classmethod
+    @staticmethod
     def get_seats():
         seats = []
         for i in range(SharedVariables.number_of_rows):

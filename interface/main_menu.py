@@ -113,7 +113,7 @@ class MainMenu():
     def make_reservation(self):
         if not self.is_logged:
             self.login_and_registration()
-
+        print(self.current_user)
         interface.print_name(self.current_user)
 
         number_of_tickets = int(interface.choose_number_of_tickets())
