@@ -113,25 +113,27 @@ class MainMenu():
     def make_reservation(self):
         if not self.is_logged:
             self.login_and_registration()
-        print(self.current_user)
-        interface.print_name(self.current_user)
+        if self.current_user:
+            interface.print_name(self.current_user)
 
-        number_of_tickets = int(interface.choose_number_of_tickets())
+            number_of_tickets = int(interface.choose_number_of_tickets())
 
-        self.show_movies()
-        movie = int(interface.choose_movie())
+            self.show_movies()
+            movie = int(interface.choose_movie())
 
-        self.show_movie_projection([movie])
-        projection = int(interface.choose_projection())
+            self.show_movie_projection([movie])
+            projection = int(interface.choose_projection())
 
-        seats, taken_seats = self.check_taken_seats(projection)
-        self.projection.show_seats(seats)
+            seats, taken_seats = self.check_taken_seats(projection)
+            self.projection.show_seats(seats)
 
-        reservation_seats = self.choose_seats(number_of_tickets, taken_seats)
-        reservation_data = self.make_reservation_values(self.current_user[0],
-                                                        projection,
-                                                        reservation_seats)
-        self.reservations.reservation(reservation_data)
+            reservation_seats = self.choose_seats(number_of_tickets,
+                                                  taken_seats)
+            reservation_data = self.make_reservation_values(self.
+                                                            current_user[0],
+                                                            projection,
+                                                            reservation_seats)
+            self.reservations.reservation(reservation_data)
 
     def make_reservation_values(self, user_id, projection_id, seats):
         return [(user_id, projection_id, seat[0], seat[1]) for seat in seats]
