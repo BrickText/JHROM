@@ -41,7 +41,10 @@ class MainMenu():
                 else:
                     interface.incorrect_option()
             elif command == 'update projection':
-                self.update_projection()
+                if len(command.split()) == 3:
+                    self.update_projection(command.split()[-1:])
+                else:
+                    interface.incorrect_option()
             elif command == 'update reservation':
                 self.update_reservation()
             elif command == 'delete movie':
@@ -156,12 +159,15 @@ class MainMenu():
         projection = interface.add_projection()
         Projection.add_projection(projection[0], projection[1], projection[2])
 
-    def update_movie(movie):
-        movie = interface.update_movie(Movies().get_movie(movie))
-        Movies().update_movie(movie, movie[0], movie[1])
+    def update_movie(movie_id):
+        movie = interface.update_movie(Movies().get_movie(movie_id))
+        Movies().update_movie(movie_id, movie[0], movie[1])
 
-    def update_projection():
-        pass
+    def update_projection(projection_id):
+        projection = interface.update_projection(Projection().
+                                                 get_projection(projection_id))
+        Projection().update_projection(projection_id, projection[0],
+                                       projection[1], projection[2])
 
     def update_reservation():
         pass
