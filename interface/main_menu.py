@@ -124,6 +124,7 @@ class MainMenu():
         if not self.is_logged:
             self.login_and_registration()
         if self.current_user:
+
             interface.print_name(self.current_user)
 
             number_of_tickets = int(interface.choose_number_of_tickets())
@@ -135,6 +136,7 @@ class MainMenu():
             projection = int(interface.choose_projection())
 
             seats, taken_seats = self.check_taken_seats(projection)
+
             interface.show_seats(seats)
 
             reservation_seats = self.choose_seats(number_of_tickets,
@@ -204,3 +206,4 @@ class MainMenu():
 
     def delete_reservation(self, reservation_id):
         Reservation.delete_reservation(reservation_id)
+        interface.success_delete()

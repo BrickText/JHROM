@@ -8,8 +8,8 @@ class SharedVariables:
     options = ['show movies', 'show movie projection <movieid> '
                '[<projection date>]', 'make reservation', 'add movie',
                'add projection', 'update movie', 'update projection',
-               'delete movie', 'delete projection', 'update reservation',
-               'reset database' 'show reservations', 'help', 'exit']
+               'delete movie', 'delete projection', 'delete reservation',
+               'show reservations', 'reset database', 'help', 'exit']
 
     available_seat = '.'
     taken_seat = 'x'
