@@ -4,7 +4,9 @@ from database.queries.delete_queries import DELETE_MOVIE
 from database.queries.select_queries import SELECT_MOVIES_ORDERED_BY_RATING,\
                                             SELECT_PROJECTION_FOR_MOVIE, \
                                             SELECT_MOVIE_BY_ID
+
 from database.connection.execute_query import execute_query
+
 from settings.SharedVariables import SharedVariables
 from prettytable import PrettyTable
 

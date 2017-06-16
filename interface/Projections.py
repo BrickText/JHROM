@@ -4,6 +4,8 @@ from database.queries.update_queries import UPDATE_PROJECTION
 from database.queries.select_queries import SELECT_PROJECTION_ORDERED_BY_DATE,\
                                             SELECT_PROJECTION_BY_ID
 
+from database.connection.execute_query import execute_query
+
 from settings.SharedVariables import SharedVariables
 from prettytable import PrettyTable
 
@@ -12,64 +14,52 @@ class Projection:
 
     def __init__(self, movie_id, projection_date):
         try:
-            db_wrapper = SharedVariables.database
-            c = db_wrapper.get_cursor()
-            self.data = c.execute(SELECT_PROJECTION_ORDERED_BY_DATE,
-                                  [movie_id, projection_date, projection_date +
-                                   " " + SharedVariables.end_of_day, ])
+            self.data = execute_query(SELECT_PROJECTION_ORDERED_BY_DATE,
+                                      [movie_id, projection_date,
+                                       projection_date +
+                                       " " + SharedVariables.end_of_day, ])
         except Exception:
             print("Database not initilized or connected")
 
     def __str__(self):
         t = PrettyTable(SharedVariables.projection_col)
         for row in self.data:
-            # print(row[0], row[1], row[2], row[3], row[4])
             t.add_row([row[0], row[1], row[2], row[3], (100 - row[4])])
         return str(t)
 
     @staticmethod
     def get_projection(id):
         try:
-            db_wrapper = SharedVariables.database
-            c = db_wrapper.get_cursor()
-            data = c.execute(SELECT_PROJECTION_BY_ID, [id, ])
-            db_wrapper.get_db().commit()
+            data = execute_query(SELECT_PROJECTION_BY_ID, [id, ])
+
+            t = PrettyTable(['Projection ID', 'Movie ID',
+                            'Movie Type', 'Date Time'])
+            for row in data:
+                t.add_row([row[0], row[1], row[2], row[3]])
+            return str(t)
         except Exception:
             print("Database not initilized or connected")
-
-        t = PrettyTable(['Projection ID', 'Movie ID',
-                        'Movie Type', 'Date Time'])
-        for row in data:
-            t.add_row([row[0], row[1], row[2], row[3]])
-        return str(t)
 
     @staticmethod
     def delete_projection(id):
         try:
-            db_wrapper = SharedVariables.database
-            c = db_wrapper.get_cursor()
-            c.execute(DELETE_PROJECTION, [id, ])
-            db_wrapper.get_db().commit()
+            execute_query(DELETE_PROJECTION, [id, ], commit=True)
         except Exception:
             print("Database not initilized or connected")
 
     @staticmethod
     def update_projection(id, movie_id, movie_type, date):
         try:
-            db_wrapper = SharedVariables.database
-            c = db_wrapper.get_cursor()
-            c.execute(UPDATE_PROJECTION, [movie_id, movie_type, date, id, ])
-            db_wrapper.get_db().commit()
+            execute_query(UPDATE_PROJECTION,
+                          [movie_id, movie_type, date, id, ], commit=True)
         except Exception:
             print("Database not initilized or connected")
 
     @staticmethod
     def add_projection(movie_id, movie_type, date):
         try:
-            db_wrapper = SharedVariables.database
-            c = db_wrapper.get_cursor()
-            c.execute(INSERT_PROJECTION, [movie_id, movie_type, date, ])
-            db_wrapper.get_db().commit()
+            execute_query(INSERT_PROJECTION, [movie_id, movie_type, date, ],
+                          commit=True)
         except Exception:
             print("Database not initilized or connected")
 
