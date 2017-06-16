@@ -126,7 +126,3 @@ def help():
 
 def incorrect_option():
     print('Incorrect option!')
-
-
-def show_seats(seats):
-    pprint(seats)
