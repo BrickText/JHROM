@@ -2,7 +2,8 @@ from database.queries.insert_queries import INSERT_PROJECTION
 from database.queries.delete_queries import DELETE_PROJECTION
 from database.queries.update_queries import UPDATE_PROJECTION
 from database.queries.select_queries import SELECT_PROJECTION_ORDERED_BY_DATE,\
-                                            SELECT_PROJECTION_BY_ID
+                                            SELECT_PROJECTION_BY_ID,\
+                                            SELECT_AVAILABLE_SEATS
 
 from database.connection.execute_query import execute_query
 
@@ -20,6 +21,14 @@ class Projection:
                                        " " + SharedVariables.end_of_day, ])
         except Exception:
             print("Database not initilized or connected")
+
+    @staticmethod
+    def get_taken_seats(id):
+        try:
+            return execute_query(SELECT_AVAILABLE_SEATS, [id, ])
+        except Exception as e:
+            print(e)
+            print("Could not get the taken seats")
 
     def __str__(self):
         t = PrettyTable(SharedVariables.projection_col)

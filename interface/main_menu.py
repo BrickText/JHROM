@@ -4,6 +4,8 @@ import sys
 from interface.Movie import Movies
 from interface.Projections import Projection
 from interface.User import Users
+from interface.Reservation import Reservation
+
 import interface.interface as interface
 
 from database.connection.database_connection import Database
@@ -87,7 +89,7 @@ class MainMenu():
     def check_taken_seats(self, projection):
         seats = SharedVariables.get_seats()
         taken_seats = []
-        reversed_seats = self.reservations.get_taken_seats(projection)
+        reversed_seats = Projection.get_taken_seats(projection)
         for row in reversed_seats:
             seats[row[0] - 1][row[1] - 1] = SharedVariables.taken_seat
             taken_seats.append((row[0], row[1]))
@@ -125,7 +127,7 @@ class MainMenu():
             projection = int(interface.choose_projection())
 
             seats, taken_seats = self.check_taken_seats(projection)
-            self.projection.show_seats(seats)
+            interface.show_seats(seats)
 
             reservation_seats = self.choose_seats(number_of_tickets,
                                                   taken_seats)
@@ -133,7 +135,7 @@ class MainMenu():
                                                             current_user[0],
                                                             projection,
                                                             reservation_seats)
-            self.reservations.reservation(reservation_data)
+            Reservation.make_reservation(reservation_data)
 
     def make_reservation_values(self, user_id, projection_id, seats):
         return [(user_id, projection_id, seat[0], seat[1]) for seat in seats]
@@ -193,4 +195,4 @@ class MainMenu():
         interface.success_delete()
 
     def delete_reservation(self, reservation_id):
-        Reservstion.delete_reservation(reservation_id)
+        Reservation.delete_reservation(reservation_id)

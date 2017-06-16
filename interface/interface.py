@@ -1,4 +1,5 @@
 from ast import literal_eval
+from pprint import pprint
 import numpy
 from getpass import getpass
 import hashlib
@@ -125,3 +126,7 @@ def help():
 
 def incorrect_option():
     print('Incorrect option!')
+
+
+def show_seats(seats):
+    pprint(seats)
