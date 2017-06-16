@@ -112,6 +112,12 @@ class MainMenu():
                     break
                 temp += 1
 
+    def show_resevations(self):
+        if not self.is_logged:
+            self.login_and_registration
+        if self.current_user:
+            Reservation.show_resevations(self.current_user.id)
+
     def make_reservation(self):
         if not self.is_logged:
             self.login_and_registration()

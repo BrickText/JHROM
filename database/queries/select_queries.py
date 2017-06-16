@@ -48,3 +48,14 @@ SELECT_MOVIE_BY_ID = '''
     FROM MOVIE as m
     WHERE m.ID = ?
 '''
+
+SELECT_RESERVATIONS_FOR_USER = '''
+    SELECT m.NAME, r.ROW, r.COL
+    FROM RESERVATION AS r
+    INNER JOIN USER AS u
+    ON r.USER_ID = u.ID AND u.ID = ?
+    INNER JOIN PROJECTION as p
+    ON p.ID = r.PROJECTION_ID
+    INNER JOIN MOVIE as m
+    ON m.ID = p.MOVIE_ID
+'''

@@ -15,6 +15,7 @@ class Users:
         result = self.c.execute(IS_USER_IN_USERS,
                                 [user_and_pass[0], user_and_pass[1], ])
         first = result.fetchone()
+        self.id = first[0]
         if first is not None:
             return first
         else:
