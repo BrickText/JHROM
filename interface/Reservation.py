@@ -28,10 +28,10 @@ class Reservation:
     @staticmethod
     def give_user_reservations(id):
         try:
-            t = PrettyTable(["Movie", "ROW", "COL"])
+            t = PrettyTable(["Reservation ID", "Movie", "ROW", "COL"])
             data = execute_query(SELECT_RESERVATIONS_FOR_USER, [id, ])
             for row in data:
-                t.add_row([row[0], row[1], row[2]])
+                t.add_row([row[0], row[1], row[2], row[3]])
             return str(t)
         except Exception as e:
             print(e)
