@@ -9,7 +9,7 @@ class SharedVariables:
                '[<projection date>]', 'make reservation', 'add movie',
                'add projection', 'update movie', 'update projection',
                'delete movie', 'delete projection', 'update reservation',
-               'reset database' 'help', 'exit']
+               'reset database' 'show reservations', 'help', 'exit']
 
     available_seat = '.'
     taken_seat = 'x'

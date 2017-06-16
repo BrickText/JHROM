@@ -26,7 +26,7 @@ class Reservation:
             raise e
 
     @staticmethod
-    def show_user_reservations(id):
+    def give_user_reservations(id):
         try:
             t = PrettyTable(["Movie", "ROW", "COL"])
             data = execute_query(SELECT_RESERVATIONS_FOR_USER, [id, ])

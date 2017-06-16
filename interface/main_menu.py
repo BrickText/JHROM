@@ -70,6 +70,8 @@ class MainMenu():
                     interface.incorrect_option()
             elif command == 'reset database':
                 SharedVariables.database.reset_database()
+            elif command == 'show reservations':
+                self.show_reservations()
             elif command == 'help':
                 interface.help()
             elif command == 'exit':
@@ -112,11 +114,11 @@ class MainMenu():
                     break
                 temp += 1
 
-    def show_resevations(self):
+    def show_reservations(self):
         if not self.is_logged:
-            self.login_and_registration
+            self.login_and_registration()
         if self.current_user:
-            Reservation.show_resevations(self.current_user.id)
+            print(Reservation.give_user_reservations(self.current_user[0]))
 
     def make_reservation(self):
         if not self.is_logged:
